@@ -7,18 +7,19 @@
   border-color: #3ea8c2;
 }
 
-.checkout-step.is-active {
-  color: #172e54; 
+.progress-step.active {
+  color: #172e54; /* Your site's dark blue */
   font-weight: 600;
 }
-.checkout-step {
-  color: #6c757d; 
+.progress-step {
+  color: #6c757d; /* Muted color for inactive steps */
 }
 .form-check-input:checked {
     background-color: #4bc9e8;
     border-color: #4bc9e8;
 }
 
-#payment-card-fields {
-  display: none;
+/* Ensure credit card fields are hidden initially if not checked */
+#credit-card-fields {
+    display: none;
 }

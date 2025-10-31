@@ -1,0 +1,25 @@
+.btn-primary {
+  background-color: #4bc9e8;
+  border-color: #4bc9e8;
+}
+.btn-primary:hover {
+  background-color: #3ea8c2; 
+  border-color: #3ea8c2;
+}
+
+.progress-step.active {
+  color: #172e54; /* Your site's dark blue */
+  font-weight: 600;
+}
+.progress-step {
+  color: #6c757d; /* Muted color for inactive steps */
+}
+.form-check-input:checked {
+    background-color: #4bc9e8;
+    border-color: #4bc9e8;
+}
+
+/* Ensure credit card fields are hidden initially if not checked */
+#credit-card-fields {
+    display: none;
+}

@@ -1,0 +1,24 @@
+.btn-primary {
+  background-color: #4bc9e8;
+  border-color: #4bc9e8;
+}
+.btn-primary:hover {
+  background-color: #3ea8c2; 
+  border-color: #3ea8c2;
+}
+
+.checkout-step.is-active {
+  color: #172e54; 
+  font-weight: 600;
+}
+.checkout-step {
+  color: #6c757d; 
+}
+.form-check-input:checked {
+    background-color: #4bc9e8;
+    border-color: #4bc9e8;
+}
+
+#payment-card-fields {
+  display: none;
+}

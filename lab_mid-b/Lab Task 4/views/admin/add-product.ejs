@@ -1,0 +1,20 @@
+<%- include('../partials/admin-header') %>
+
+<h1>Add Product</h1>
+<form action="/admin/add-product" method="POST" style="max-width: 500px;">
+    <p>Name: <input type="text" name="name" required style="width:100%;"></p>
+    <p>Price: <input type="number" name="price" required style="width:100%;"></p>
+    <p>Category: 
+        <select name="category" style="width:100%;">
+            <option>Service</option>
+            <option>Consultation</option>
+            <option>Book</option>
+            <option>Software</option>
+        </select>
+    </p>
+    <p>Description: <textarea name="description" style="width:100%;"></textarea></p>
+    <p>Image Path: <input type="text" name="image" placeholder="/images/example.jpg" style="width:100%;"></p>
+    <button type="submit" class="button-style">Save Product</button>
+</form>
+
+<%- include('../partials/admin-footer') %>

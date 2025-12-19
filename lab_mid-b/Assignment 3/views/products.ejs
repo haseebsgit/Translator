@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeTranslator | Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Modern Filter Styling */
+        .filter-section {
+            background: #f8f9fa; padding: 25px; margin: 20px auto;
+            max-width: 1100px; border-radius: 10px; display: flex; gap: 15px;
+            align-items: center; justify-content: center; flex-wrap: wrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .filter-section select, .filter-section input {
+            padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none;
+        }
+        .pagination { text-align: center; margin: 40px 0; }
+        .pagination a {
+            padding: 10px 18px; background: #fff; border: 1px solid #ddd;
+            text-decoration: none; color: #333; margin: 0 5px; border-radius: 5px; transition: 0.3s;
+        }
+        .pagination a.active { background: #4bc9e8; color: white; border-color: #4bc9e8; }
+        .pagination a:hover:not(.active) { background: #f0f0f0; }
+        
+        /* Ensure images fit well in boxes */
+        .box img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <%- include('partials/header') %>
+
+    <div class="container">
+        <h1 class="heading" style="text-align:center; margin-top:20px;">Our <span>Products</span></h1>
+        
+        <form action="/products" method="GET" class="filter-section">
+            <select name="category">
+                <option value="All">All Categories</option>
+                <option value="Service" <%= searchOptions.category === 'Service' ? 'selected' : '' %>>Service</option>
+                <option value="Consultation" <%= searchOptions.category === 'Consultation' ? 'selected' : '' %>>Consultation</option>
+                <option value="Book" <%= searchOptions.category === 'Book' ? 'selected' : '' %>>Book</option>
+                <option value="Software" <%= searchOptions.category === 'Software' ? 'selected' : '' %>>Software</option>
+            </select>
+
+            <select name="sort">
+                <option value="default">Sort By: Default</option>
+                <option value="priceAsc" <%= searchOptions.sort === 'priceAsc' ? 'selected' : '' %>>Price: Low to High</option>
+                <option value="priceDesc" <%= searchOptions.sort === 'priceDesc' ? 'selected' : '' %>>Price: High to Low</option>
+            </select>
+
+            <input type="number" name="minPrice" placeholder="Min $" value="<%= searchOptions.minPrice %>" style="width: 80px;">
+            <input type="number" name="maxPrice" placeholder="Max $" value="<%= searchOptions.maxPrice %>" style="width: 80px;">
+
+            <button type="submit" class="button-style" style="border:none; cursor:pointer; padding: 10px 20px;">Apply Filters</button>
+            <a href="/products" style="margin-left: 10px; color: #666; text-decoration: none;">Clear All</a>
+        </form>
+    </div>
+
+    <section class="testimonials">
+        <div class="box-container">
+            <% if(products.length > 0) { %>
+                <% products.forEach(prod => { %>
+                    <div class="box">
+                        <img src="<%= prod.image %>" alt="<%= prod.name %>">
+                        <h3><%= prod.name %></h3>
+                        <div class="stars" style="color: #4bc9e8; font-weight: bold; font-size: 1.4rem;">
+                            $<%= prod.price %>
+                        </div>
+                        <p style="font-weight: 600; color: #888; text-transform: uppercase; font-size: 0.7rem;"><%= prod.category %></p>
+                        <p><%= prod.description %></p>
+                        
+                        <button class="button-style" 
+                                style="margin-top: 15px; border:none; cursor:pointer; width:100%;"
+                                onclick="alert('Added to cart!')">
+                            Add to Cart
+                        </button>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 50px;">
+                    <h3>No products found matching your criteria.</h3>
+                    <p>Try resetting the filters.</p>
+                </div>
+            <% } %>
+        </div>
+    </section>
+
+    <div class="pagination">
+        <% 
+            // This string ensures that when you click "Page 2", it keeps your category and sort settings
+            let queryParams = `&category=${searchOptions.category || 'All'}&sort=${searchOptions.sort || 'default'}&minPrice=${searchOptions.minPrice || ''}&maxPrice=${searchOptions.maxPrice || ''}`;
+        %>
+
+        <% if (currentPage > 1) { %>
+            <a href="/products?page=<%= currentPage - 1 %><%= queryParams %>">&laquo; Prev</a>
+        <% } %>
+
+        <% for(let i = 1; i <= totalPages; i++) { %>
+            <a href="/products?page=<%= i %><%= queryParams %>" 
+               class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+
+        <% if (currentPage < totalPages) { %>
+            <a href="/products?page=<%= currentPage + 1 %><%= queryParams %>">Next &raquo;</a>
+        <% } %>
+    </div>
+
+    <%- include('partials/footer') %>
+
+</body>
+</html>

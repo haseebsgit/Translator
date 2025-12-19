@@ -1,0 +1,22 @@
+<%- include('../partials/admin-header') %>
+
+<h1>Admin Dashboard</h1>
+<p>Welcome back! Here is an overview of your shop's status.</p>
+
+<div style="display: flex; gap: 20px; margin-top: 30px;">
+    <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex: 1; border-left: 5px solid #4bc9e8;">
+        <h3 style="color: #888; margin: 0;">Total Products</h3>
+        <h2 style="font-size: 2.5rem; margin: 10px 0;"><%= count %></h2>
+        <a href="/admin/products" style="color: #4bc9e8; text-decoration: none; font-weight: bold;">Manage Inventory &rarr;</a>
+    </div>
+
+    <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); flex: 1; border-left: 5px solid #2ecc71;">
+        <h3 style="color: #888; margin: 0;">Quick Actions</h3>
+        <div style="margin-top: 15px;">
+            <a href="/admin/add-product" class="button-style" style="display: inline-block; padding: 8px 15px; font-size: 0.9rem;">+ Add New Product</a>
+            <a href="/products" target="_blank" style="margin-left: 10px; font-size: 0.9rem; color: #666;">View Live Site</a>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/admin-footer') %>

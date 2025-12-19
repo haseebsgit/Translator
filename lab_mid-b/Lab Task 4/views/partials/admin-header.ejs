@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Admin-Specific Layout Styles */
+        body { display: flex; min-height: 100vh; background: #f4f7f6; margin: 0; font-family: sans-serif; }
+        
+        .sidebar { 
+            width: 260px; 
+            background: #2c3e50; 
+            color: white; 
+            padding: 25px; 
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .sidebar h2 { color: #4bc9e8; font-size: 1.5rem; margin-bottom: 5px; }
+        .sidebar p { font-size: 0.8rem; color: #888; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar hr { border: 0.5px solid #3e4f5f; margin-bottom: 20px; }
+        
+        .sidebar a { color: #bdc3c7; display: block; padding: 12px; text-decoration: none; border-radius: 5px; transition: 0.2s; }
+        .sidebar a:hover { background: #34495e; color: white; }
+        
+        .main-content { flex: 1; padding: 40px; overflow-y: auto; }
+
+        /* Styles for Admin Tables & Buttons */
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        th { background: #f8f9fa; padding: 15px; border-bottom: 2px solid #eee; text-align: left; color: #666; }
+        td { padding: 15px; border-bottom: 1px solid #eee; }
+        
+        .btn-edit { color: #3498db; text-decoration: none; font-weight: bold; }
+        .btn-delete { color: #e74c3c; border: none; background: none; cursor: pointer; font-weight: bold; padding: 0; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>BeTranslator</h2>
+        <p>Admin Portal</p>
+        <hr>
+        
+        <a href="/admin">📊 Dashboard</a>
+        <a href="/admin/products">📦 Manage Inventory</a>
+        <a href="/admin/add-product">➕ Add New Product</a>
+        
+        <div style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #3e4f5f;">
+            <a href="/products" style="color: #4bc9e8;">🌐 View Live Shop</a>
+            <a href="/" style="font-size: 0.9rem;">🏠 Site Home</a>
+        </div>
+    </div>
+    <div class="main-content">

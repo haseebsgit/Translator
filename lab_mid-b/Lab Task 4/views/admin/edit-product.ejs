@@ -1,0 +1,48 @@
+<%- include('../partials/admin-header') %>
+
+<h1>Edit Product</h1>
+<p style="color: #666;">Editing: <strong><%= product.name %></strong></p>
+
+<div style="background: white; padding: 30px; border-radius: 10px; margin-top: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    <form action="/admin/edit-product/<%= product._id %>" method="POST">
+        
+        <div style="margin-bottom: 15px;">
+            <label style="display:block; margin-bottom: 5px; font-weight: bold;">Product Name</label>
+            <input type="text" name="name" value="<%= product.name %>" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        </div>
+
+        <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+            <div style="flex: 1;">
+                <label style="display:block; margin-bottom: 5px; font-weight: bold;">Price ($)</label>
+                <input type="number" name="price" value="<%= product.price %>" required style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="flex: 1;">
+                <label style="display:block; margin-bottom: 5px; font-weight: bold;">Category</label>
+                <select name="category" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option <%= product.category === 'Service' ? 'selected' : '' %>>Service</option>
+                    <option <%= product.category === 'Consultation' ? 'selected' : '' %>>Consultation</option>
+                    <option <%= product.category === 'Book' ? 'selected' : '' %>>Book</option>
+                    <option <%= product.category === 'Software' ? 'selected' : '' %>>Software</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label style="display:block; margin-bottom: 5px; font-weight: bold;">Description</label>
+            <textarea name="description" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"><%= product.description %></textarea>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label style="display:block; margin-bottom: 5px; font-weight: bold;">Image Filename</label>
+            <input type="text" name="image" value="<%= product.image %>" placeholder="/images/example.jpg" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <small style="color: #999;">Current image: <%= product.image %></small>
+        </div>
+
+        <div style="border-top: 1px solid #eee; padding-top: 20px;">
+            <button type="submit" class="button-style" style="border: none; cursor: pointer;">Update Product</button>
+            <a href="/admin/products" style="margin-left: 15px; color: #666; text-decoration: none;">Cancel and Go Back</a>
+        </div>
+    </form>
+</div>
+
+<%- include('../partials/admin-footer') %>
